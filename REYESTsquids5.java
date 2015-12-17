@@ -1,12 +1,13 @@
 //// squids5.java -- array of squid objects
-//// BAM:5c02c;  sample code for project 9
+//// ReyesT;  Project 9
+
 
 int many=5;
 Squid school[]=  new Squid[many];
-String names[]=  { "Otto", "Nono", "Deca", "Ariel", "Ursala" };
+String names[]=  { "Blake", "Terrance", "Michael", "Ethan", "Jay" };
 float spacing;
 
-Boat bounty=  new Boat();
+Boat pip=  new Boat();
 
 float surface;
 float moonX=0, moonY=100;
@@ -29,7 +30,7 @@ void reset() {
     school[i]=  new Squid( names[i], x );
     x += spacing;
   }
-  bounty.name=  "Bounty";
+  pip.name=  "Pip";
 }
 
 
@@ -37,7 +38,7 @@ void reset() {
 void draw() {
   scene();
   if (key >= 'A' && key <= 'Z') {
-    boatReport( 50, bounty, 1 );
+    boatReport( 50, pip, 1 );
     fishReport( surface+50, school, school.length);
   }
   else action();
@@ -50,7 +51,7 @@ void messages() {
   text( "Squid School", width/3, 20 );
   textSize(12);
   text( "Hold B key to show all boats and fish", width/3, 40 );
-  text( "BAM:  squids5.java", 10, height-10 );
+  text( "REYEST:  squids5.java", 10, height-10 );
   if (score>0) text( "SCORE:  "+score, width*3/4, 20 );
   if (score>900) {
     if (key == 'q') score=0;
@@ -80,7 +81,7 @@ void action() {
   for (int i=0; i<many; i++ ) {
     school[i].move();
   }
-  bounty.move();
+  pip.move();
 }
 //// Display the squids in (sorted) order.
 void show() {
@@ -90,11 +91,11 @@ void show() {
     x += spacing;
     school[i].show();
   }
-  bounty.show();
+  pip.show();
 }
 
 //// SUMMARIES:  List all objects in the array.
-// Display the properties of each object in the array.
+// Display the properties of each object in the array.
 void boatReport( float top, Boat b, int many ) {
   fill(255,200,200);
   rect( 50,top, width-100, 50 + 20*many );
@@ -245,14 +246,14 @@ class Squid {
 
 
 class Boat {
-  String name="";
+  String name="Pip";
   float x=0, y=surface, dx=5;
   int cargo=0, caught=0;
   void move() {
     //// Fish before move:  check each squid.
     int caught=0;
     for (int i=0; i<many; i++ ) {
-      if (school[i].hit( bounty.x, surface )) {
+      if (school[i].hit( pip.x, surface )) {
         caught += school[i].legs;
       }
     }
